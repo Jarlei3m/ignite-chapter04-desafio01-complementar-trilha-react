@@ -2,15 +2,7 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
 export function TravelTypes() {
   return (
-    <Flex
-      maxWidth={1440}
-      w='100%'
-      // mx='auto'
-      py='114px'
-      // align='center'
-      justify='space-between'
-      px='140'
-    >
+    <Flex maxWidth={1440} w='100%' py='114px' justify='space-between' px='140'>
       <Box align='center' justify='center'>
         <Image src='cocktail.svg' alt='cocktail' />
         <Text fontSize='24px' fontWeight='600' color='gray.800' mt='6'>
