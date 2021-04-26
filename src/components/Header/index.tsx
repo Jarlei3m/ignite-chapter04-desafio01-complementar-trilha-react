@@ -12,21 +12,21 @@ export function Header() {
       as='header'
       width='100%'
       mx='auto'
-      maxWidth={1440}
-      minHeight={100}
+      maxWidth={{ base: '425px', md: '768px', lg: '1440px' }}
+      minHeight={{ base: '50px', md: '75px', lg: '100px' }}
       align='center'
       justify='center'
-      px='140px'
+      px={[4, 36, 78, 140]}
     >
-      <Image src='logo.svg' alt='world trip' />
+      <Image src='logo.svg' alt='world trip' w={[81, 132, 181]} />
       {route.asPath !== '/' && (
         <Link href='/'>
           <Icon
             as={RiArrowLeftSLine}
             pos='absolute'
-            left='140px'
+            left={[4, 36, 78, 140]}
             color='gray.800'
-            fontSize='32px'
+            fontSize={{ base: '16px', md: '24px', lg: '32px' }}
             cursor='pointer'
             transition='color .3s ease'
             _hover={{
