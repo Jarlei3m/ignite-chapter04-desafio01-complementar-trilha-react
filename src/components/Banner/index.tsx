@@ -1,4 +1,4 @@
-import { Flex, Image, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 
 export function Banner() {
   const isWideVersion = useBreakpointValue({
@@ -8,7 +8,7 @@ export function Banner() {
 
   return (
     <Flex
-      h={{ base: '163px', md: '249px', lg: '335px' }}
+      h={{ base: "163px", md: "249px", lg: "335px" }}
       w='100%'
       mx='auto'
       pos='relative'
@@ -33,7 +33,7 @@ export function Banner() {
         <Text
           zIndex='5'
           color='gray.50'
-          fontSize={{ base: '20px', md: '28px', lg: '36px' }}
+          fontSize={{ base: "20px", md: "28px", lg: "36px" }}
           fontWeight='500'
           align='left'
         >
@@ -41,7 +41,7 @@ export function Banner() {
           <br /> infinitas possibilidades.
           <Text
             // fontSize='20px'
-            fontSize={{ base: '14px', md: '17px', lg: '20px' }}
+            fontSize={{ base: "14px", md: "17px", lg: "20px" }}
             fontWeight='400'
             maxWidth={524}
             color='gray.200'

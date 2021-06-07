@@ -1,33 +1,30 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import nc from "next-connect";
+import { NextApiRequest, NextApiResponse } from "next";
+import upload from "../../../utils/upload";
+import connectToDatabase from "../../../utils/mongodb";
 
-export default (request: NextApiRequest, response: NextApiResponse) => {
-  const types = [
-    {
-      id: 1,
-      text: 'vida noturna',
-      image: 'cocktail.svg',
-    },
-    {
-      id: 2,
-      text: 'praia',
-      image: 'surf.svg',
-    },
-    {
-      id: 3,
-      text: 'moderno',
-      image: 'building.svg',
-    },
-    {
-      id: 4,
-      text: 'clássico',
-      image: 'museum.svg',
-    },
-    {
-      id: 5,
-      text: 'e mais...',
-      image: 'earth.svg',
-    },
-  ];
+const handler = nc<NextApiRequest, NextApiResponse>()
+  .use(upload.single("image"))
+  .post(async (req, res) => {
+    const { text } = req.body;
+    const { db } = await connectToDatabase();
+    const collection = db.collection("types");
 
-  return response.json(types);
+    await collection.insertOne({
+      text,
+      // image: req.file.location,
+    });
+
+    return res.status(200).json({ ok: true });
+  })
+  .patch(async (req, res) => {
+    throw new Error("Throws me around! Error can be caught and handled.");
+  });
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
 };
+
+export default handler;

@@ -1,4 +1,4 @@
-import { Box, Flex, Image, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
 
 interface CityProps {
   id: number;
@@ -9,37 +9,37 @@ interface CityProps {
 }
 
 interface CitiesProps {
-  cities: CityProps[];
+  cities?: CityProps[];
 }
 
 export default function Cities({ cities }: CitiesProps) {
   return (
     <Flex
       maxWidth={1440}
-      w={{ base: '100%' }}
+      w={{ base: "100%" }}
       mx={[4, 36, 78, 140]}
       direction='column'
       align='center'
-      mb={{ base: '16px', md: '25px', lg: '35px' }}
+      mb={{ base: "16px", md: "25px", lg: "35px" }}
     >
       <Text
         w='100%'
         px={[4, 36, 78, 140]}
-        fontSize={{ base: '24px', md: '30px', lg: '36px' }}
-        lineHeight={{ base: '36px', md: '46px', lg: '56px' }}
+        fontSize={{ base: "24px", md: "30px", lg: "36px" }}
+        lineHeight={{ base: "36px", md: "46px", lg: "56px" }}
         fontWeight='500'
         color='gray.800'
         align='left'
-        mb={{ base: '20px', md: '30px', lg: '40px' }}
+        mb={{ base: "20px", md: "30px", lg: "40px" }}
       >
         Cidades +100
       </Text>
 
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
-        spacing={{ base: '20px', md: '30px', lg: '45px' }}
+        spacing={{ base: "20px", md: "30px", lg: "45px" }}
       >
-        {cities.map((city) => {
+        {cities?.map((city) => {
           return (
             <Box key={city.id} bg='white' h='279px' w='256px'>
               <Image

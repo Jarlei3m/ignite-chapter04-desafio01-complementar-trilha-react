@@ -1,11 +1,11 @@
-import { Flex } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
-import Cities from '../components/Cities';
-import { ContinentBanner } from '../components/ContinentBanner';
-import { ContinentInfo } from '../components/ContinentInfo';
-import { Header } from '../components/Header';
-import { api } from '../services/api';
+import { Flex } from "@chakra-ui/react";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
+import Cities from "../components/Cities";
+import { ContinentBanner } from "../components/ContinentBanner";
+import { ContinentInfo } from "../components/ContinentInfo";
+import { Header } from "../components/Header";
+import { getContinents } from "../database/getContinents";
 
 interface CityProps {
   id: number;
@@ -17,15 +17,15 @@ interface CityProps {
 
 interface Continent {
   id: number;
-  slug: string;
-  name: string;
+  slug?: string;
+  name?: string;
   text: string;
-  image: string;
-  description: string;
-  total_country: string;
-  total_language: string;
-  total_city: string;
-  cities: CityProps[];
+  image?: string;
+  description?: string;
+  total_country?: string;
+  total_language?: string;
+  total_city?: string;
+  cities?: CityProps[];
 }
 
 interface ContinentProps {
@@ -55,25 +55,28 @@ export default function Continent({ continent }: ContinentProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await api.get('api/continents');
+  const data = await getContinents();
 
-  const paths = data.map((continent: Continent) => {
+  const continents = JSON.parse(JSON.stringify(data));
+
+  const paths = continents?.map((continent: Continent) => {
     return {
       params: {
-        slug: continent?.slug,
+        slug: continent.slug,
       },
     };
   });
 
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params;
 
-  const { data } = await api.get('api/continents');
+  const data = await getContinents();
+  const continents = JSON.parse(JSON.stringify(data));
 
-  const filteredContinent = data.filter(
+  const filteredContinent = continents?.filter(
     (continent: Continent) => continent?.slug === slug
   );
 

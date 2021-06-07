@@ -1,25 +1,34 @@
 import {
-  Box,
   Flex,
   Image,
   SimpleGrid,
   Text,
   useBreakpointValue,
-} from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+} from "@chakra-ui/react";
+import { useState } from "react";
 
-export function TravelTypes() {
-  const [types, setTypes] = useState([]);
+interface Type {
+  _id: number;
+  text: string;
+  image: string;
+}
+
+interface TravelTypesProps {
+  types?: Type[];
+}
+
+export function TravelTypes({ types }: TravelTypesProps) {
+  // const [types, setTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('/api/types')
-      .then((res) => res.json())
-      .then((types) => {
-        setTypes(types), setIsLoading(false);
-      });
-  }, []);
-  console.log(types);
+  // useEffect(() => {
+  //   fetch('/api/types')
+  //     .then((res) => res.json())
+  //     .then((types) => {
+  //       setTypes(types), setIsLoading(false);
+  //     });
+  // }, []);
+  // console.log(types);
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -33,14 +42,14 @@ export function TravelTypes() {
       rowGap={27}
       maxWidth={isWideVersion ? 1440 : 275}
       w='100%'
-      mt={{ base: '36px', md: '75px', lg: '114px' }}
-      mb={{ base: '36px', md: '58px', lg: '80px' }}
+      mt={{ base: "36px", md: "75px", lg: "114px" }}
+      mb={{ base: "36px", md: "58px", lg: "80px" }}
       mx='auto'
       px={[null, null, 78, 140]}
       whiteSpace='nowrap'
     >
-      {types.map((type, index) => {
-        const { id, text, image } = type;
+      {types?.map((type, index) => {
+        const { _id: id, text, image } = type;
 
         if (isWideVersion) {
           return (
@@ -49,7 +58,7 @@ export function TravelTypes() {
 
               <Text
                 textAlign='center'
-                fontSize={{ base: '18px', md: '21px', lg: '24px' }}
+                fontSize={{ base: "18px", md: "21px", lg: "24px" }}
                 fontWeight={[500, 600]}
                 color='gray.800'
                 mt='6'
@@ -63,13 +72,13 @@ export function TravelTypes() {
             <Flex
               key={id}
               align='center'
-              justify={index % 2 === 0 ? 'right' : 'flex-end'}
+              justify={index % 2 === 0 ? "right" : "flex-end"}
               direction='row'
             >
               <Image src='elipse.svg' alt='elipse' mr='8px' />
               <Text
                 textAlign='center'
-                fontSize={{ base: '18px', md: '21px', lg: '24px' }}
+                fontSize={{ base: "18px", md: "21px", lg: "24px" }}
                 fontWeight={[500, 600]}
                 color='gray.800'
               >
@@ -90,7 +99,7 @@ export function TravelTypes() {
               <Image src='elipse.svg' alt='elipse' mr='8px' />
               <Text
                 textAlign='center'
-                fontSize={{ base: '18px', md: '21px', lg: '24px' }}
+                fontSize={{ base: "18px", md: "21px", lg: "24px" }}
                 fontWeight={[500, 600]}
                 color='gray.800'
               >
